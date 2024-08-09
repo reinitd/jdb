@@ -36,7 +36,7 @@ namespace JDB
             string content = await File.ReadAllTextAsync(path);
             var jsonObject = JsonConvert.DeserializeObject<Dictionary<string, Table>>(content);
 
-            long timestamp = DateTime.Now.ToFileTimeUtc();
+            long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             Table table = new()
             {
                 LastUpdated = timestamp,
@@ -91,7 +91,7 @@ namespace JDB
             Table? tableData = await GetTableAsync(tableName);
             if (tableData == null) { Console.WriteLine("Table data is null."); return false; }
 
-            tableData.LastUpdated = DateTime.Now.ToFileTimeUtc();
+            tableData.LastUpdated = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             tableData.Data ??= [];
 
             tableData.Data[key] = data;
@@ -112,7 +112,7 @@ namespace JDB
             Table? tableData = await GetTableAsync(tableName);
             if (tableData == null) { Console.WriteLine("Table data is null."); return false; }
 
-            tableData.LastUpdated = DateTime.Now.ToFileTimeUtc();
+            tableData.LastUpdated = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             tableData.Data = data;
 
             string content = await File.ReadAllTextAsync(path);
@@ -140,7 +140,7 @@ namespace JDB
 
             // if (!File.Exists(path))
             // {
-                long timestamp = DateTime.Now.ToFileTimeUtc();
+                long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                 Table table = new()
                 {
                     LastUpdated = timestamp,

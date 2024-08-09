@@ -59,7 +59,7 @@ public class Program
                 Title = "Hello, World!",
                 Content = "This is my first post.",
                 AuthorUuid = Guid.NewGuid(),
-                CreatedAt = DateTime.Now.ToFileTimeUtc()
+                CreatedAt = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
             };
 
             bool updateAtKeyRes = await db.UpdateTableAtKeyAsync("posts", "posts", new List<Post>() { post });
