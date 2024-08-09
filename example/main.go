@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	db, err := jdb.NewJDB("/db/prim.json")
+	db, err := jdb.NewJDB("./db/prim.json")
 	if err != nil {
 		fmt.Print(err)
 	}
