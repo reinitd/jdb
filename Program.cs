@@ -13,11 +13,11 @@ public class Program
         Jatabase db = new("db/test.json");
 
         List<string> res = await db.GetTablesAsync();
-        Console.WriteLine(string.Join("", res));
+        Console.WriteLine($"Tables: {string.Join("", res)}");
 
         Table? table = await db.GetTableAsync("default");
         if (table == null) { return; }
-        Console.WriteLine(table.CreatedAt);
+        Console.WriteLine($"Table Created At: {table.CreatedAt}");
 
         Dictionary<string, object>? data = table.Data ?? ([]);
 
